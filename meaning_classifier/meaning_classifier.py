@@ -37,7 +37,7 @@ class MeaningClassifier(ABC):
             verbose=0
         )[0][0]
 
-    def classify(self, text: [Word]):
+    def classify(self, text: [Word]) -> float:
         windows = [
             text[start:start + self.window_model_size]
             for start in range(0, len(text) - self.window_model_size + 1)
@@ -50,3 +50,9 @@ class MeaningClassifier(ABC):
 
         finally_rate = sum(rates) / len(rates)
         return finally_rate
+
+    def classify_paragraph(self, paragraph: [[Word]]) -> float:
+        flatten_text = []
+        for row in paragraph:
+            flatten_text += row
+        return self.classify(flatten_text)

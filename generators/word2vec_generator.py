@@ -75,10 +75,6 @@ class Word2VecGenerator(Generator):
                         context != self.base_words and \
                         not Rhymes.is_rhyme(word, context[-1]):
                     continue
-                elif (not row) and \
-                        context != self.base_words and \
-                        Rhymes.is_rhyme(word, context[-1]):
-                    print(1)
 
                 generated_row = self._generate_row(
                     context,
