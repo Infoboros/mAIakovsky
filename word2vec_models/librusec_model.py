@@ -23,5 +23,5 @@ class LibrusecModel(Word2VecModel):
             topn=count if count is not None else 100
         )
 
-    def word2vec(self, word: str) -> [float]:
-        return self.model.wv[word]
+    def word2vec(self, word: Word) -> [float]:
+        return self.model.wv[word.word]

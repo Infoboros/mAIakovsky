@@ -29,5 +29,5 @@ class NavecModel(Word2VecModel):
             topn=count if count is not None else self.vocab_size
         )
 
-    def word2vec(self, word: str) -> [float]:
-        return self.model.wv[word]
+    def word2vec(self, word: Word) -> [float]:
+        return self.model.wv[word.word]

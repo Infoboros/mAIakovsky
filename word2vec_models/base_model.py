@@ -10,5 +10,5 @@ class Word2VecModel(ABC):
         raise NotImplemented()
 
     @abstractmethod
-    def word2vec(self, word: str) -> [float]:
+    def word2vec(self, word: Word) -> [float]:
         raise NotImplemented()
