@@ -54,7 +54,7 @@ class Word2VecGenerator(Generator):
             return row
 
         # TODO тут можно поиграться с длинной списка слов
-        predict_list = self._filter_predict_list(row, self.model.predict_next_word(context))
+        predict_list = self._filter_predict_list(row, self.model.predict_next_word(context, 100))
 
         for predict, _ in predict_list:
             word = Word(predict)
