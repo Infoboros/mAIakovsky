@@ -1,6 +1,6 @@
 from functools import reduce
 
-from word2vec_models import Word2VecModel
+from language_models import Word2VecModel
 from word_processing import Word
 
 

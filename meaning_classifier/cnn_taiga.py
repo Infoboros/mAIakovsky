@@ -1,5 +1,5 @@
 from .meaning_classifier import MeaningClassifier
-from word2vec_models import TaigaStihiModel
+from language_models import TaigaStihiModel
 
 
 class MeaningClassifierCNNTaiga(MeaningClassifier):

@@ -4,7 +4,7 @@ from gensim.models import Word2Vec
 from navec import Navec
 
 from settings import DOWNLOADS_PATH
-from word2vec_models.base_model import Word2VecModel
+from language_models.base_model import Word2VecModel
 from word_processing import Word
 
 

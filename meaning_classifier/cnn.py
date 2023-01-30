@@ -1,5 +1,5 @@
 from .meaning_classifier import MeaningClassifier
-from word2vec_models import NavecModel
+from language_models import NavecModel
 
 
 class MeaningClassifierCNNNavec(MeaningClassifier):

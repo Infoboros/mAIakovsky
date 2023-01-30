@@ -5,7 +5,7 @@ import numpy as np
 from keras.saving.save import load_model
 
 from settings import BASE_PATH
-from word2vec_models import Word2VecModel
+from language_models import Word2VecModel
 from word_processing import Word
 
 
