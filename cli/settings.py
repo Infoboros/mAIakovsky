@@ -1,0 +1,4 @@
+from settings import CLI_SETTINGS
+
+
+RAW_DATA_SETS_ROOT = CLI_SETTINGS['RAW_DATA_SETS_ROOT']

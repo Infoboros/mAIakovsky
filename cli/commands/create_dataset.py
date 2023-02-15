@@ -1,23 +1,25 @@
+from datetime import datetime
+from os import path
 from sys import stdout
 from typing import Optional
 
 import click
 
+from cli.settings import RAW_DATA_SETS_ROOT
+
 from parsers.my_songs import MySongsParser
 
-parser_bindings = {
+PARSER_BINFINGS = {
     'mysongs': MySongsParser
 }
 
-
 @click.command()
 @click.option('-u', '--url')
-@click.option('-s', '--site', type=click.Choice(list(parser_bindings.keys()), case_sensitive=False), required=True)
-@click.option('-o', '--output')
-def cli(site: str, url: str, output: Optional[str]):
-    parser = parser_bindings[site]()
+@click.option('-s', '--site', type=click.Choice(list(PARSER_BINFINGS.keys()), case_sensitive=False), required=True)
+def cli(site: str, url: str):
+    parser = PARSER_BINFINGS[site]()
     parser.parse(url)
 
-    out_stream = open(output) if output is not None else stdout
-    parser.save_data(out_stream)
-    out_stream.close()
+    raw_data_set_path = path.join(RAW_DATA_SETS_ROOT, str(datetime.now()))
+    with open(raw_data_set_path, 'w') as output:
+        parser.save_data(output)

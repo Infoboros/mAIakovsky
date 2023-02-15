@@ -6,3 +6,8 @@ DOWNLOADS_PATH = path.join(
     BASE_PATH,
     'downloads'
 )
+
+
+CLI_SETTINGS = {
+    'RAW_DATA_SETS_ROOT': path.join(BASE_PATH, 'data_sets', 'raw_data')
+}

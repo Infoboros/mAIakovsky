@@ -13,8 +13,9 @@ class Parser(ABC):
         response = requests.get(url)
         return BeautifulSoup(response.text, features='lxml')
 
-    def __init__(self):
+    def __init__(self, clean_function):
         self.data: [str] = []
+        self.clean_function = clean_function
 
     @abstractmethod
     def parse(self, start_url: str):
@@ -22,4 +23,10 @@ class Parser(ABC):
 
     def save_data(self, output: TextIOWrapper) -> int:
         return output \
-            .write('\n'.join(self.data))
+            .write(
+                '\n'.join(
+                    self.clean_function(
+                        self.data
+                    )
+                )
+        )
