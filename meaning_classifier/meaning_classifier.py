@@ -5,12 +5,12 @@ import numpy as np
 from keras.saving.save import load_model
 
 from settings import BASE_PATH
-from language_models import Word2VecModel
+from language_models import BaseModel
 from word_processing import Word
 
 
 class MeaningClassifier(ABC):
-    def __init__(self, model_file_name: str, embedding: Word2VecModel, window_model_size: int = 5):
+    def __init__(self, model_file_name: str, embedding: BaseModel, window_model_size: int = 5):
         self.model = load_model(
             path.join(
                 BASE_PATH,

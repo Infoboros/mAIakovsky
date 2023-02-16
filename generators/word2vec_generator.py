@@ -3,12 +3,12 @@ from random import choices, shuffle
 from word_processing.rhymes import Rhymes
 from .generator import Generator
 
-from language_models import Word2VecModel
+from language_models import BaseModel
 from word_processing import Word
 
 
 class Word2VecGenerator(Generator):
-    def __init__(self, model: Word2VecModel, base_words: [str]):
+    def __init__(self, model: BaseModel, base_words: [str]):
         super().__init__()
         self.model = model
         self.text = []

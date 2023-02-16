@@ -15,11 +15,12 @@ PARSER_BINFINGS = {
 
 @click.command()
 @click.option('-u', '--url')
+@click.option('-n', '--name')
 @click.option('-s', '--site', type=click.Choice(list(PARSER_BINFINGS.keys()), case_sensitive=False), required=True)
-def cli(site: str, url: str):
+def cli(site: str, name: str, url: str):
     parser = PARSER_BINFINGS[site]()
     parser.parse(url)
 
-    raw_data_set_path = path.join(RAW_DATA_SETS_ROOT, str(datetime.now()))
+    raw_data_set_path = path.join(RAW_DATA_SETS_ROOT, name)
     with open(raw_data_set_path, 'w') as output:
         parser.save_data(output)

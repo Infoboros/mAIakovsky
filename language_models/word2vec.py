@@ -1,21 +1,12 @@
-from os import path
-
 from gensim.models import Word2Vec
 
-from settings import DOWNLOADS_PATH
 from word_processing import Word
 from .base_model import BaseModel
 
 
-class StihiTaigaModel(BaseModel):
-    def __init__(self):
-        self.model = Word2Vec.load(
-            path.join(
-                DOWNLOADS_PATH,
-                'stihi_taiga'
-            )
-        )
-        self.vocab_size = len(self.model.wv.index_to_key)
+class Word2VecModel(BaseModel):
+    def __init__(self, path_model: str):
+        self.model = Word2Vec.load(path_model)
 
     def predict_next_word(self, context: [Word], count: int = None) -> [str]:
         return self.model.predict_output_word(

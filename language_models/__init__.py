@@ -1,4 +1,4 @@
-from .base_model import Word2VecModel
+from .base_model import BaseModel
 from .navec_model import NavecModel
 from .mock_model import MockModel
 from .librusec_model import LibrusecModel

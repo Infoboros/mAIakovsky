@@ -3,7 +3,7 @@ from abc import ABC, abstractmethod
 from word_processing import Word
 
 
-class Word2VecModel(ABC):
+class BaseModel(ABC):
 
     @abstractmethod
     def predict_next_word(self, context: [Word], count: int = None) -> [str]:

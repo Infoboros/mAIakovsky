@@ -4,11 +4,11 @@ from gensim.models import Word2Vec
 from navec import Navec
 
 from settings import DOWNLOADS_PATH
-from language_models.base_model import Word2VecModel
+from language_models.base_model import BaseModel
 from word_processing import Word
 
 
-class NavecModel(Word2VecModel):
+class NavecModel(BaseModel):
     def __init__(self):
         navec = Navec.load(
             path.join(

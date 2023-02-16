@@ -4,10 +4,10 @@ from gensim.models import Word2Vec
 
 from settings import DOWNLOADS_PATH
 from word_processing import Word
-from .base_model import Word2VecModel
+from .base_model import BaseModel
 
 
-class TaigaStihiModel(Word2VecModel):
+class TaigaStihiModel(BaseModel):
     def __init__(self):
         self.model = Word2Vec.load(
             path.join(
