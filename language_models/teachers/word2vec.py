@@ -44,10 +44,12 @@ class Word2VecTeacher(Teacher):
         self.model.train(
             data,
             total_examples=self.model.corpus_count,
-            epochs=1000,
+            epochs=100,
             compute_loss=True,
             callbacks=[LogCallback()]
         )
+
+        print(f'Размер словаря: {len(self.model.wv.index_to_key)} слов')
 
     def save(self):
         raw_embedding_path = path.join(RAW_EMBEDDING_ROOT, self.dataset_name)
