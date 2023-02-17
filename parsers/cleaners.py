@@ -5,7 +5,7 @@ from functools import partial
 
 def clean_empty(data: [str]):
     return filter(
-        lambda row: len(row) > 3,
+        lambda row: row.strip(),
         data
     )
 
@@ -48,7 +48,7 @@ def remove_tags(data: [str]) -> [str]:
 
 
 def remove_part_names(data: [str]) -> [str]:
-    reg_exp = r'куплет \d *|припев *|вступление *|переход *|финал *|pyrokinesis *'
+    reg_exp = r'куплеты?\d? \d? *|припев *|вступление *|переход *|финал *|pyrokinesis *|мукка *|алёна швец *|playingtheangel *|booker *|katanacss *|aikko *|twoxseven *|own maslou *|inspace *|егор натс *|sagath *|три дня дождя *|rayd *|и? ?masha hima *|playingthenangel *|adamant *|stedd *|kidd *'
     return map(
         lambda row: re.sub(reg_exp, '', row),
         data
