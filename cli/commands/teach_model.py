@@ -5,9 +5,11 @@ import click
 from cli.settings import RAW_DATA_SETS_ROOT
 
 from language_models.teachers import Word2VecTeacher
+from language_models.teachers.fastText import FastTextTeacher
 
 TEACHER_BINDING = {
-    'word2vec': Word2VecTeacher
+    'word2vec': Word2VecTeacher,
+    'fastText': FastTextTeacher
 }
 
 @click.command()

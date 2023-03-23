@@ -8,7 +8,7 @@ class ChatGPT:
 
     def rate_poem(self, poem: str) -> str:
         return self.get_answer(
-            f'Оцени стихотворение\n'
+            f'Оцени качество стихотворения:\n'
             f'{poem}'
         )
 
