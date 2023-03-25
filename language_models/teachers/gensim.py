@@ -75,6 +75,7 @@ class GensimTeacher(Teacher, ABC):
         )
 
         print(f'Размер словаря: {len(self.model.wv.index_to_key)} слов')
+        print(f'Оценка памяти необходимой для обучения: {self.model.estimate_memory()}')
         log.print_statistic()
 
         start = datetime.now()
