@@ -1,13 +1,11 @@
 import multiprocessing
-from abc import ABC, abstractmethod
+from abc import ABC
 from datetime import datetime
-from os import path
 
 from gensim.models.callbacks import CallbackAny2Vec
 from matplotlib import pyplot as plt
 
 from language_models.teachers.teacher import Teacher
-from settings import RAW_EMBEDDING_ROOT, LANGUAGE_MODELS_ROOT
 
 
 class GensimLogCallback(CallbackAny2Vec):
@@ -81,18 +79,3 @@ class GensimTeacher(Teacher, ABC):
         start = datetime.now()
         self.model.predict_output_word(['я', 'тебя', 'люблю'], topn=1000)
         print(f'Время выполнения запроса: {(datetime.now() - start).microseconds} микросекунд')
-
-    @abstractmethod
-    def get_generate_model(self):
-        raise NotImplemented()
-
-    def save(self):
-        raw_embedding_path = path.join(RAW_EMBEDDING_ROOT, self.dataset_name)
-        language_model_path = path.join(LANGUAGE_MODELS_ROOT, f'{self.dataset_name}.py')
-
-        self.model.save(raw_embedding_path)
-
-        with open(language_model_path, 'w') as language_model_file:
-            language_model_file.write(
-                self.get_generate_model()
-            )

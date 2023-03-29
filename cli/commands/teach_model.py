@@ -6,9 +6,11 @@ from cli.settings import RAW_DATA_SETS_ROOT
 
 from language_models.teachers import Word2VecTeacher
 from language_models.teachers.fastText import FastTextTeacher
+from language_models.teachers.gloVe import GloVeTeacher
 
 TEACHER_BINDING = {
     'word2vec': Word2VecTeacher,
+    'glove': GloVeTeacher,
     'fastText': FastTextTeacher
 }
 

@@ -15,13 +15,14 @@ class FastTextTeacher(GensimTeacher):
             f'''
 # #
 # Данная языковая модель сгенерирована автоматически ${datetime.now()}
+# Алгоритм FastText 
 # #
 from os import path
 
 from settings import RAW_EMBEDDING_ROOT
-from language_models.fastText import FastTextModel
+from language_models.gensim import GensimModel
 
-class {self.dataset_name.capitalize()}Model(FastTextModel):
+class {self.dataset_name.capitalize()}Model(GensimModel):
     def __init__(self):
         super().__init__(path.join(RAW_EMBEDDING_ROOT, '{self.dataset_name}'))
                     '''
