@@ -13,13 +13,13 @@ from language_models.teachers.teacher import Teacher
 #
 
 class GloVeTeacher(Teacher):
-
     VECTOR_SIZE = 300
 
     def __init__(self, dataset_name: str, dataset_path: [str]):
         super().__init__(dataset_name, dataset_path)
 
         cores = multiprocessing.cpu_count()
+        teach_start = datetime.now()
         self.model = Glove(
             sentences=self.get_data(),
             min_count=5,
@@ -29,6 +29,8 @@ class GloVeTeacher(Teacher):
             verbose=True,
             epochs=10
         )
+        print(f'Время обучения: {(teach_start - datetime.now()).seconds} секунд')
+        # TODO дописать вывод графика
 
     def fit(self):
         print(f'Размер словаря: {len(self.model.wv.index_to_key)} слов')
@@ -41,6 +43,7 @@ class GloVeTeacher(Teacher):
         word2vec_model.wv.add_vectors(keys, vecs)
 
         self.model = word2vec_model
+        print(f'Оценка памяти необходимой для обучения: {self.model.estimate_memory()}')
 
         start = datetime.now()
         self.model.predict_output_word(['я', 'тебя', 'люблю'], topn=1000)
@@ -48,7 +51,7 @@ class GloVeTeacher(Teacher):
 
     def get_generate_model(self):
         return \
-        f'''
+            f'''
 # #
 # Данная языковая модель сгенерирована автоматически ${datetime.now()}
 # Алгоритм GloVe

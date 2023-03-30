@@ -7,11 +7,13 @@ from cli.settings import RAW_DATA_SETS_ROOT
 from language_models.teachers import Word2VecTeacher
 from language_models.teachers.fastText import FastTextTeacher
 from language_models.teachers.gloVe import GloVeTeacher
+from language_models.teachers.rnnlm import RNNLMTeacher
 
 TEACHER_BINDING = {
     'word2vec': Word2VecTeacher,
     'glove': GloVeTeacher,
-    'fastText': FastTextTeacher
+    'fastText': FastTextTeacher,
+    'rnnlm': RNNLMTeacher
 }
 
 @click.command()
