@@ -38,7 +38,7 @@ class GensimLogCallback(CallbackAny2Vec):
             self.loss_log
         )
 
-        plt.title('Процесс обучения Word2Vec модели')
+        # plt.title('Процесс обучения Word2Vec модели')
         plt.ylabel('Ошибка')
         plt.xlabel('Номер эпохи')
         plt.show()

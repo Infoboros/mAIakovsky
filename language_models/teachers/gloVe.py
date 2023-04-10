@@ -3,6 +3,7 @@ from datetime import datetime
 
 from gensim.models import Word2Vec
 from glove import Glove
+from matplotlib import pyplot as plt
 
 from language_models.teachers.teacher import Teacher
 
@@ -31,6 +32,15 @@ class GloVeTeacher(Teacher):
         )
         print(f'Время обучения: {(teach_start - datetime.now()).seconds} секунд')
         # TODO дописать вывод графика
+        traint_log = self.model.get_train_log()
+        plt.plot(
+            [log['iter'] for log in traint_log],
+            [log['cost'] for log in traint_log],
+        )
+
+        plt.ylabel('Ошибка')
+        plt.xlabel('Номер эпохи')
+        plt.show()
 
     def fit(self):
         print(f'Размер словаря: {len(self.model.wv.index_to_key)} слов')
