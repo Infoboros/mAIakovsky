@@ -6,6 +6,7 @@ from gensim.models import Word2Vec
 from keras import Sequential
 from keras.layers import Dense, LSTM, Embedding, GRU, SimpleRNN
 from keras_preprocessing.sequence import pad_sequences
+from matplotlib import pyplot as plt
 
 from language_models.teachers.teacher import Teacher
 
@@ -50,7 +51,7 @@ class RNNLMTeacher(Teacher):
         train_text = sequence_list[:, :-1]
         train_predict = sequence_list[:, 1]
 
-        self.model.fit(
+        history = self.model.fit(
             train_text,
             train_predict,
             batch_size=None,
@@ -60,7 +61,10 @@ class RNNLMTeacher(Teacher):
             use_multiprocessing=True
         )
         print(f'Время обучения: {(teach_start - datetime.now()).seconds} секунд')
-        # TODO дописать вывод графика
+        plt.plot(history.history['loss'])
+        plt.ylabel('Ошибка')
+        plt.xlabel('Номер эпохи')
+        plt.show()
 
         print(f'Размер словаря (Задается константой): {len(self.key_to_index.keys())} слов')
 
