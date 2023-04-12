@@ -28,10 +28,9 @@ class GloVeTeacher(Teacher):
             vector_size=self.VECTOR_SIZE,
             workers=cores - 1,
             verbose=True,
-            epochs=10
+            epochs=300
         )
         print(f'Время обучения: {(teach_start - datetime.now()).seconds} секунд')
-        # TODO дописать вывод графика
         traint_log = self.model.get_train_log()
         plt.plot(
             [log['iter'] for log in traint_log],

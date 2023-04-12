@@ -67,7 +67,7 @@ class GensimTeacher(Teacher, ABC):
         self.model.train(
             data,
             total_examples=self.model.corpus_count,
-            epochs=10,
+            epochs=300,
             compute_loss=True,
             callbacks=[log]
         )

@@ -32,7 +32,7 @@ class RNNLMTeacher(Teacher):
         self.model.add(GRU(256, return_sequences=True))
         self.model.add(SimpleRNN(128))
         self.model.add(Dense(1))
-        self.model.compile(loss='categorical_crossentropy', metrics=['accuracy'], optimizer='adam')
+        self.model.compile(loss='mean_squared_error', metrics=['accuracy'], optimizer='adam')
 
     def get_indexed_data(self):
         return [
@@ -54,9 +54,9 @@ class RNNLMTeacher(Teacher):
         history = self.model.fit(
             train_text,
             train_predict,
-            batch_size=None,
-            epochs=10,
-            validation_split=0.1,
+            batch_size=10,
+            epochs=300,
+            validation_split=0.01,
             workers=multiprocessing.cpu_count() - 1,
             use_multiprocessing=True
         )
