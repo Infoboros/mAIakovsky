@@ -6,7 +6,7 @@ from generators import Word2VecGenerator
 from genetic.genetic import Genetic
 from genetic.simple import SimplePopulation
 from gpt import ChatGPT
-from language_models.ru_rap import Ru_rapModel
+from language_models.ruRap import RurapModel
 
 
 # from meaning_classifier import MeaningClassifierCNNTaiga
@@ -17,11 +17,11 @@ class Bot:
         print('Инициализация...')
         self.bot = telebot.TeleBot(token)
 
-        print('Инициализация ChatGPT...')
-        self.gpt = ChatGPT()
+        # print('Инициализация ChatGPT...')
+        # self.gpt = ChatGPT()
 
         print('Инициализация языковой модели')
-        self.embedding = Ru_rapModel()
+        self.embedding = RurapModel()
 
         # print('Инициализация классификатора')
         # self.classifier = MeaningClassifierCNNTaiga()

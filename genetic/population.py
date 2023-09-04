@@ -1,5 +1,3 @@
-
-
 from abc import ABC, abstractmethod
 from word_processing import Word
 
@@ -78,9 +76,13 @@ class Population(ABC):
         return len(self.population)
 
     def print_3d_population(self):
-        for index, individual in enumerate(self.population):
-            print(f'Индивид {index}')
-            for row in individual:
-                print(' '.join([str(word) for word in row]))
-            print()
+        print(self.__str__())
 
+    def __str__(self):
+        result = ""
+        for index, individual in enumerate(self.population):
+            result += f'Индивид {index}\n'
+            for row in individual:
+                result += f"{' '.join([str(word) for word in row])}\n"
+            result += '\n'
+        return result
