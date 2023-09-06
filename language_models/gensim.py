@@ -7,6 +7,7 @@ from .base_model import BaseModel
 class GensimModel(BaseModel):
     def __init__(self, path_model: str):
         self.wv = KeyedVectors.load(path_model)
+        self.vocab = self.wv.index_to_key
 
     def predict_next_word(self, context: [Word], count: int = None) -> [str]:
         return self.wv.most_similar(

@@ -8,6 +8,9 @@ from utils import ReusableIter
 
 
 class Teacher(ABC):
+    model_postfix: str = ''
+    file_model_postfix: str = ''
+
     def __init__(self, dataset_name: str, dataset_path: [str]):
         self.dataset_path = dataset_path
         self.dataset_name = dataset_name
@@ -32,8 +35,8 @@ class Teacher(ABC):
         raise NotImplemented()
 
     def save(self):
-        raw_embedding_path = path.join(RAW_EMBEDDING_ROOT, self.dataset_name)
-        language_model_path = path.join(LANGUAGE_MODELS_ROOT, f'{self.dataset_name}.py')
+        raw_embedding_path = path.join(RAW_EMBEDDING_ROOT, self.dataset_name + self.file_model_postfix)
+        language_model_path = path.join(LANGUAGE_MODELS_ROOT, f'{self.dataset_name}{self.file_model_postfix}.py')
 
         self.model.wv.save(raw_embedding_path)
 

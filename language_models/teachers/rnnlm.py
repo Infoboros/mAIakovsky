@@ -12,6 +12,8 @@ from language_models.teachers.teacher import Teacher
 
 
 class RNNLMTeacher(Teacher):
+    model_postfix: str = 'RNNLM'
+    file_model_postfix: str = '_rnnlm'
     VECTOR_SIZE = 300
     WINDOW_SIZE = 5
 
@@ -95,7 +97,7 @@ from os import path
 from settings import RAW_EMBEDDING_ROOT
 from language_models.gensim import GensimModel
 
-class {self.dataset_name.capitalize()}Model(GensimModel):
+class {self.dataset_name.capitalize()}Model{self.model_postfix}(GensimModel):
     def __init__(self):
-        super().__init__(path.join(RAW_EMBEDDING_ROOT, '{self.dataset_name}'))
+        super().__init__(path.join(RAW_EMBEDDING_ROOT, '{self.dataset_name}{self.file_model_postfix}'))
                     '''

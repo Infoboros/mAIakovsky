@@ -5,6 +5,8 @@ from word_processing import Word
 
 class BaseModel(ABC):
 
+    vocab: [str]
+
     @abstractmethod
     def predict_next_word(self, context: [Word], count: int = None) -> [str]:
         raise NotImplemented()
