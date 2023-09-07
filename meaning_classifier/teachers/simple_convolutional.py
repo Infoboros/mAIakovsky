@@ -48,9 +48,9 @@ from os import path
 
 from settings import RAW_MEANING_CLASSIFIER_ROOT
 from meaning_classifier.meaning_classifier import MeaningClassifier
-from language_models.{self.meaning_classifier_name} import {self.meaning_classifier_name.capitalize()}Model
+from language_models.{self.embedding_package_name} import {self.embedding_model_name}
 
-class {self.meaning_classifier_name.capitalize()}Classifier{self.model_postfix}(MeaningClassifier):
+class {self.meaning_classifier_name}Classifier{self.model_postfix}(MeaningClassifier):
     def __init__(self):
-        super().__init__(path.join(RAW_MEANING_CLASSIFIER_ROOT, '{self.meaning_classifier_name}_{self.file_model_postfix}'), {self.meaning_classifier_name.capitalize()}Model(), {self.window_size})
+        super().__init__(path.join(RAW_MEANING_CLASSIFIER_ROOT, '{self.meaning_classifier_path}{self.file_model_postfix}'), {self.embedding_model_name}(), {self.window_size})
                     '''

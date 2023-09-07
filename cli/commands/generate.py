@@ -1,10 +1,11 @@
 import click
+import matplotlib.pyplot as plt
 
 from generators import Word2VecGenerator
 from genetic.genetic import Genetic
 from genetic.simple import SimplePopulation
-from language_models.ruRap import RurapModel
-from meaning_classifier import MeaningClassifierCNNTaiga
+from language_models.ruRap_glove import RurapModelGlove
+from meaning_classifier.ruRap_glove_simple_cnn import RuRapGloveClassifierSimpleCNN
 
 
 # TODO дописать параметры
@@ -22,9 +23,9 @@ def cli(
         context.split(',')
     ))
     # TODO вынести параметром
-    embedding = RurapModel()
+    embedding = RurapModelGlove()
     # TODO вынести параметром
-    classifier = MeaningClassifierCNNTaiga()
+    classifier = RuRapGloveClassifierSimpleCNN()
 
     generator = Word2VecGenerator(embedding, prepared_context)
     population = SimplePopulation(
@@ -41,3 +42,14 @@ def cli(
     for generation in range(10):
         print(f'Поколение {generation + 2}')
         print(genetic.next_population())
+
+    xs = range(len(genetic.history))
+    history = list(zip(*genetic.history))
+    for individual in history:
+        plt.plot(xs[2:], individual[2:])
+
+    plt.title('Процесс селекции')
+    plt.ylabel('Критерий смысла')
+    plt.xlabel('Номер эпохи')
+    plt.legend([index + 1 for index in range(len(history))], loc='upper left')
+    plt.show()

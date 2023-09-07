@@ -1,2 +1,4 @@
 /.idea
 /downloads
+language_models/raw_embedding
+meaning_classifier/saved_classifiers

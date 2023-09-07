@@ -18,19 +18,26 @@ class Teacher(ABC):
 
     def __init__(self,
                  meaning_classifier_name: str,
+                 meaning_classifier_path: str,
                  dataset_path: [str],
                  embedding: BaseModel,
+                 embedding_model_name: str,
+                 embedding_package_name: str,
                  window_size: int = 5,
                  vec_size: int = 300,
                  max_count: int = 1000
                  ):
         self.embedding = embedding
+        self.embedding_model_name = embedding_model_name
+        self.embedding_package_name = embedding_package_name
+
         self.window_size = window_size
         self.vec_size = vec_size
         self.max_count = max_count
 
         self.dataset_path = dataset_path
         self.meaning_classifier_name = meaning_classifier_name
+        self.meaning_classifier_path = meaning_classifier_path
         self.model = self._get_model()
 
     @abstractmethod
@@ -100,11 +107,11 @@ class Teacher(ABC):
     def save(self):
         raw_meaning_classifier_path = path.join(
             RAW_MEANING_CLASSIFIER_ROOT,
-            self.meaning_classifier_name + self.file_model_postfix
+            self.meaning_classifier_path + self.file_model_postfix
         )
         meaning_classifier_path = path.join(
             MEANING_CLASSIFIER_ROOT,
-            f'{self.meaning_classifier_name}{self.file_model_postfix}.py'
+            f'{self.meaning_classifier_path}{self.file_model_postfix}.py'
         )
 
         self.model.save(raw_meaning_classifier_path)
